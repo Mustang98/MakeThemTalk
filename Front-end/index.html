@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8"/>
+      <title>MakethemTalk</title>
+      <link type="text/css" rel="stylesheet" href="style.css">
+      <script type="text/javascript" src="http://vk.com/js/api/share.js?93" charset="windows-1251">/*Скрипт вк*/</script>
+      <script type="text/javascript" src="script.js"></script>
+      
+   </head>
+   
+   <body>
+      <div id="page">
+         <div id="header">
+            <span>MakeThemTalk</span>
+         </div>
+         <div id="content">
+            <div id="left">
+               <div class="content-block video">
+                  <div id="video_list">
+                     <video>            
+                        <source src="sharishaxd.mp4">
+                        <source src="sharishaxd.avi">
+                     </video>
+                     <video style="display:none;">
+                        <source>
+                        <source>
+                        <source>
+                     </video>
+                     <video style="display:none;">
+                        <source>
+                        <source>
+                        <source>
+                     </video>
+                     <video style="display:none;">
+                        <source>
+                        <source>
+                        <source>
+                     </video>
+                     <video style="display:none;">
+                        <source>
+                        <source>
+                        <source>
+                     </video>
+                     <video style="display:none;">
+                        <source>
+                        <source>
+                        <source>
+                     </video>
+                     <video style="display:none;">
+                        <source>
+                        <source>
+                        <source>
+                     </video>
+                     <video style="display:none;">
+                        <source>
+                        <source>
+                        <source>
+                     </video>
+                     <video style="display:none;">
+                        <source>
+                        <source>
+                        <source>
+                     </video>
+                     <video style="display:none;">
+                        <source>
+                        <source>
+                        <source>
+                     </video>
+                     <video style="display:none;">
+                        <source>
+                        <source>
+                        <source>
+                     </video>
+                     <video style="display:none;">
+                        <source>
+                        <source>
+                        <source>
+                     </video>
+                     <video style="display:none;">
+                        <source>
+                        <source>
+                        <source>
+                     </video>
+                     <video style="display:none;">
+                        <source>
+                        <source>
+                        <source>
+                     </video>
+                     <video style="display:none;">
+                        <source>
+                        <source>
+                        <source>
+                     </video>
+                     <video style="display:none;">
+                        <source>
+                        <source>
+                        <source>
+                     </video>
+                  </div>                  
+                  <img id="video_stop" src="img/pause.png" style="">
+                  <img id="video_start" src="img/green_play.png" style="">
+               </div>
+               <div class="content-block phrase">
+                  <div id="lines">
+                     <hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr>
+                  </div>
+                  <p>Добавьте слова из списка справа</p>
+                  <!--span title="Нажмите для удаления" class="viewed">Я </span> 
+                  <span title="Нажмите для удаления" class="viewed">просить </span> 
+                  <span title="Нажмите для удаления" class="viewed">оба </span> 
+                  <span title="Нажмите для удаления" class="viewed">начать </span> 
+                  <span title="Нажмите для удаления" class="viewed">брат </span> 
+                  <span title="Нажмите для удаления" class="viewed">бросить </span> 
+                  <span title="Нажмите для удаления" class="viewed">следующий </span> 
+                  <span title="Нажмите для удаления" class="viewed active">собственный </span> 
+                  <span title="Нажмите для удаления" >школа </span> 
+                  <span title="Нажмите для удаления" >личный </span> 
+                  <span title="Нажмите для удаления" >отношение </span> 
+                  <span title="Нажмите для удаления" >парень </span> 
+                  <span title="Нажмите для удаления" >труд </span-->
+                  <!--ФРАЗА, ПОТОМ СЛОВА, ПОТОМ ЭЛЕМЕНТЫ УПРАВЛЕНИЯ-->
+                  <div id="phrase-cover"></div>
+                  <div style="display:none;" class="ctrls">
+                     <img id="clear_last" src="img/clear.png" title="Стереть последнее">
+                     <img id="clear_all" src="img/clear_all.png" title="Стереть все">
+                  </div>   
+               </div>
+               <hr class="separator" noshade size=1>
+               <div class="content-block share">
+                  <script type="text/javascript">
+                     <!--
+                     document.write(VK.Share.button({
+                       url: 'http://mydsfdsite.com',
+                       title: 'Хороший сайт',
+                       description: 'Это мой собственный сайт, я его очень долго делал',
+                       image: 'http://mysite.com/mypic.jpg',
+                       noparse: true
+                     },
+                     {
+                        type:"custom",
+                        text:"<img style='border:0;' src='img/vk-logo.png'>"                        
+                     }));
+                     -->
+                  </script>
+                  <img src="img/ok-logo.png">
+                  <img src="img/fb-logo.png">
+                  <img src="img/go-logo.png">
+                  <input id="link" value="https://MakeThemTalk.ru/karina" readonly type="text">
+                  <img src="img/copy_link.png" title="Копировать ссылку">
+               </div>
+               <hr class="separator" noshade size=1>
+               <div class="content-block description">
+                  <h2>О ресурсе</h2>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo ldectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam. </p>
+               </div>
+            </div>
+            <div id="right">
+               <div class="content-block words">
+                  <div class="controls">
+                     <ul>
+                        <li data-type="popular" class="active">Популярные</li>
+                        <li data-type="alpha">По алфавиту</li>
+                     </ul>
+                     <label><input type="checkbox" checked=true onchange="wordSection.changeCensor();"> <span>Цензура</span></label>
+                  </div>
+                  <div style="clear:both;"></div>
+                  <div class="word-type">
+                     <table id="word-type" style="opacity:0;">
+                        <tr><td data-type="other">Другое</td>
+                            <td data-type="adjectives">Прилагательные</td>
+                            <td data-type="verbs">Глаголы</td>
+                            <td data-type="nouns" class="active">Существительные</td></tr>
+                     </table>
+                  </div>
+                  <div class="words-cover">
+                     <!--table class="words-list" id="alpha-cnouns" style="display:none;">
+                        <tbody>
+                           <tr><td><span>письмо</span></td><td><span>хозяин</span></td><td><span>становиться</span></td></tr>
+                           <tr><td><span>власть</span></td><td><span>вроде</span></td><td><span>остановиться</span></td></tr>
+                           <tr><td><span>черный</span></td><td><span>уходить</span></td><td><span>берег</span></td></tr>
+                           <tr><td><span>пройти</span></td><td><span>подойти</span></td><td><span>семья</span></td></tr>
+                           <tr><td><span>появиться</span></td><td><span>поднять</span></td><td><span>искать</span></td></tr>
+                           <tr><td><span>воздух</span></td><td><span>особенно</span></td><td><span>генерал</span></td></tr>
+                           <tr><td><span>разный</span></td><td><span>спрашивать</span></td><td><span>момент</span></td></tr>
+                           <tr><td><span>выходить</span></td><td><span>начальник</span></td><td><span>десять</span></td></tr>
+                           <tr><td><span>просить</span></td><td><span>оба</span></td><td><span>начать</span></td></tr>
+                           <tr><td><span>брат</span></td><td><span>бросить</span></td><td><span>следующий</span></td></tr>
+                           <tr><td><span>собственный</span></td><td><span>школа</span></td><td><span>личный</span></td></tr>
+                           <tr><td><span>отношение</span></td><td><span>парень</span></td><td><span>труд</span></td></tr>
+                           <tr><td><span>затем</span></td><td><span>кровь</span></td><td><span>верить</span></td></tr>
+                           <tr><td><span>пытаться</span></td><td><span>двадцать</span></td><td><span>группа</span></td></tr>
+                           <tr><td><span>показать</span></td><td><span>солнце</span></td><td><span>немного</span></td></tr>
+                           <tr><td><span>вспомнить</span></td><td><span>неделя</span></td><td><span>впрочем</span></td></tr>
+                        </tbody>
+                     </table-->
+                     <table class="words-list" id="calpha-nouns" style="display:none">
+                        <tbody>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                        </tbody>
+                     </table>
+                     <table class="words-list" id="calpha-verbs" style="display:none;">
+                        <tbody>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                        </tbody>
+                     </table>
+                     <table class="words-list" id="calpha-adjectives" style="display:none;">
+                        <tbody>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                        </tbody>
+                     </table>
+                     <table class="words-list" id="calpha-other" style="display:none;">
+                        <tbody>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                        </tbody>
+                     </table>
+                     <table class="words-list" id="alpha-nouns" style="display:none;">
+                        <tbody>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                        </tbody>
+                     </table>
+                     <table class="words-list" id="alpha-verbs" style="display:none;">
+                        <tbody>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                        </tbody>
+                     </table>
+                     <table class="words-list" id="alpha-adjectives" style="display:none;">
+                        <tbody>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                        </tbody>
+                     </table>
+                     <table class="words-list" id="alpha-other" style="display:none;">
+                        <tbody>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                        </tbody>
+                     </table>                     
+                     <table class="words-list" id="popular" style="display:none;">
+                        <tbody>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                        </tbody>
+                     </table>
+                     <table class="words-list" id="cpopular" style="">
+                        <tbody>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                           <tr><td></td><td></td><td></td></tr>
+                        </tbody>
+                     </table> 
+                  </div>
+               </div>
+               <div class="content-block pop-phrases">
+                  <h2>Популярные фразы</h2>
+                  <ul id="pop-phrases">
+                     <!--li><a href="#1">Я скромная няша, я няша-стесняша</a><img src="img/play_phrase.png"></li>
+                     <li><a href="#1">Кариночка любит играть в доту, а ты долбаеб, как и твоя мамка</a><img src="img/play_phrase.png"></li>
+                     <li><a href="#">Я шлюха</a><img src="img/play_phrase.png"></li>
+                     <li><a href="#">Я скромная няша, я няша-стесняша</a><img src="img/play_phrase.png"></li>
+                     <li><a href="#1">Карина любит играть в доту, а ты долбоеб лох</a><img src="img/play_phrase.png"></li>
+                     <li><a href="#">Я шлюха милая а ты нет</a><img src="img/play_phrase.png"></li>
+                     <li><a href="#">Привет, давай познакомимся, я красивая и думаю о жизни вечерами</a><img src="img/play_phrase.png"></li>
+                     <li><a href="#">Что ты думаешь если так будет все и всегда</a><img src="img/play_phrase.png"></li--> 
+                  </ul>
+               </div>
+            </div>
+            <div style="clear:both"></div>
+            <div id="comments"></div>
+         </div>
+         <div id="footer">
+            <img src="img/logo_footer1.png">
+            <span class="contact">Связь с разработчиками:<br>contact@makethemtalk.ru</span>
+            <span class="copyright"><span>&copy;</span> 2016</span>
+         </div>
+      </div>
+   </body>
+</html>
