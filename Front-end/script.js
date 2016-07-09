@@ -15,6 +15,7 @@ var phrases = [
    {code:"21&1&15&11&23&39&7&14&21&1&15&11&23&39&7&14", rate:90}
 ];
 
+/*
 var words = [    
    {value:"вечерами", rate:5, censor:true},
    {value:"внутри", rate:5, censor:true},
@@ -94,41 +95,42 @@ var words = [
    {value:"федерация", rate:3, censor:true},
    {value:"хотеться", rate:1, censor:true},
    {value:"центр", rate:2, censor:true}
-];
-/*var words = [    
-   {value:"пизда", rate:5, censor:false},
-   {value:"бояться", rate:12, censor:true},
-   {value:"важный", rate:4, censor:true},
-   {value:"великий", rate:3, censor:true},
-   {value:"вести", rate:6, censor:true},
-   {value:"внимание", rate:7, censor:true},
-   {value:"военный", rate:10, censor:true},
-   {value:"все-таки", rate:11, censor:true},
-   {value:"давно", rate:1, censor:true},
-   {value:"даже", rate:3, censor:true},
+];*/
+
+var words = [    
+   {value:"пизда", 		rate:5, censor:false},
+   {value:"бояться", 	rate:12, censor:true},
+   {value:"важный",		rate:4, censor:true},
+   {value:"великий", 	rate:3, censor:true},
+   {value:"вести", 		rate:6, censor:true},
+   {value:"внимание", 	rate:7, censor:true},
+   {value:"военный",	   rate:10, censor:true},
+   {value:"все-таки",	rate:11, censor:true},
+   {value:"давно", 		rate:1, censor:true},
+   {value:"даже", 		rate:3, censor:true},
    {value:"действительно", rate:7, censor:true},
-   {value:"живой", rate:8, censor:true},
-   {value:"задача", rate:9, censor:true},
-   {value:"ебать", rate:3, censor:false},
-   {value:"известный", rate:2, censor:true},
-   {value:"блядь", rate:18, censor:false},
+   {value:"живой", 		rate:8, censor:true},
+   {value:"задача", 		rate:9, censor:true},
+   {value:"ебать", 		rate:3, censor:false},
+   {value:"известный", 	rate:2, censor:true},
+   {value:"блядь", 		rate:18, censor:false},
    {value:"информация", rate:14, censor:true},
-   {value:"мера", rate:13, censor:true},
-   {value:"муж", rate:12, censor:true},
-   {value:"наконец", rate:6, censor:true},
-   {value:"нахуй", rate:1, censor:false},
-   {value:"огромный", rate:0, censor:true},
-   {value:"окно", rate:14, censor:true},
-   {value:"ответ", rate:2, censor:true},
-   {value:"показать", rate:9, censor:true},
-   {value:"охуенный", rate:5, censor:false},
-   {value:"положение", rate:11, censor:true},
-   {value:"поставить", rate:14, censor:true},
-   {value:"правило", rate:14, censor:true},
+   {value:"мера", 		rate:13, censor:true},
+   {value:"муж",			rate:12, censor:true},
+   {value:"наконец", 	rate:6, censor:true},
+   {value:"нахуй", 		rate:1, censor:false},
+   {value:"огромный", 	rate:0, censor:true},
+   {value:"окно", 		rate:14, censor:true},
+   {value:"ответ",		rate:2, censor:true},
+   {value:"показать", 	rate:9, censor:true},
+   {value:"охуенный", 	rate:5, censor:false},
+   {value:"положение", 	rate:11, censor:true},
+   {value:"поставить", 	rate:14, censor:true},
+   {value:"правило", 	rate:14, censor:true},
    {value:"правительство", rate:3, censor:true},
-   {value:"шлюха", rate:11, censor:false},
-   {value:"прийтись", rate:9, censor:true},
-   {value:"программа", rate:7, censor:true},
+   {value:"шлюха", 		rate:11, censor:false},
+   {value:"прийтись", 	rate:9, censor:true},
+   {value:"программа", 	rate:7, censor:true},
    {value:"производство", rate:16, censor:true},
    {value:"происходить", rate:22, censor:true},
    {value:"простой", rate:3, censor:true},
@@ -146,26 +148,26 @@ var words = [
    {value:"сука", rate:7, censor:false},
    {value:"третий", rate:10, censor:true},
    {value:"труд", rate:5, censor:true},
-   {value:"федерация", rate:3, censor:true},
-   {value:"хотеться", rate:1, censor:true},
-   {value:"центр", rate:2, censor:true}
-];*/
+   {value:"федерация",	 rate:3, censor:true},
+   {value:"хотеться",		 rate:1, censor:true},
+   {value:"центр",		 rate:2, censor:true}
+];
 
 var categories = {
    nouns:"0&12&15&16&17&18&22&23&26&28&29&30&32&33&37&38&39&41&44&46&47&49&50&52",
    adjectives:"2&3&6&11&14&21&25&35&48",
    verbs:"1&4&13&24&27&31&34&43&45&51",
    other:"5&7&8&9&10&19&20&36&40&42",
-   popular:"0&23&1&22&2&21&3&20&4&19&5&18&6&17&7&16&8&15&9&14&10&13&11&12&5",
-   //popular:"34&15&33&28&27&22&46&16&41&17&36&1&18&7&30&26&6&48&42&45&12&31&24&11&5",
+   //popular:"0&23&1&22&2&21&3&20&4&19&5&18&6&17&7&16&8&15&9&14&10&13&11&12&5",
+   popular:"34&15&33&28&27&22&46&16&41&17&36&1&18&7&30&26&6&48&42&45&12&31&24&11&5",
    cpopular:"34&33&28&27&22&46&16&41&17&1&18&7&26&6&48&42&45&12&31&24&11&5&44&29&21"
 };
 
 //CLIENT DATA OBJECTS
 var video = {
    _phrasevid:[],
-   _freevid:[],
-   _mainvid:null,
+   _freevid:[], //стэк свободный видеоэлементов
+   _mainvid:null, //фоновое основное видео (ссылка на элемент)
    isplayed:false,
    
    initialize: function() {
@@ -175,6 +177,7 @@ var video = {
    },
    
    add: function(id) {//id добавляемого слова
+		//проверка совершается в добавлении слова во фразу
       var newv = this._freevid.pop();//берем свободный тег видео
       this._phrasevid.push(newv);//добавляем в текущий "плейлист"
       newv.loaded = false;//флажок готовности к проигрыванию
@@ -197,7 +200,7 @@ var video = {
          notification("Фраза пуста. Добавьте слова из таблицы справа"); 
          return;
       }
-      if (self.canPlay == false)
+      if (self.canPlay() == false)
       {
          notification("Видео еще не загружено, сделай TimeOut/события или прочую хуйету"); 
          return;
@@ -228,9 +231,9 @@ var video = {
       }
       
       this._phrasevid[num].style.display = "";//показываем текущее видео
-      phrase.colorize(num, "active");
+      phrase.colorize(num, "active");//подсвечиваем текущее слово
       this._phrasevid[num].play();//включаем текущее
-      //подсвечиваем текущее слово
+
    },
    
    finish: function() {
@@ -249,11 +252,11 @@ var video = {
 }
 
 var phrase = {
-   _curPhrase: [],
-   _curIds: [],
-   _lines: [],
-   _block: null,
-   _last:null,
+   _curPhrase: [], //массив ссылок на элементы слов фразы
+   _curIds: [], //массив id слов фразы
+   _lines: [], //массив линий между словами (все 15)
+   _block: null, //контейнер слов (элементов)
+   _last:null, //последнее слово во фразе (сам элемент)
    LINE_HEIGHT:3,
    
    initialize: function()
@@ -373,7 +376,7 @@ var phrase = {
    {
       var ph = this._curPhrase;
       var ln = this._lines;
-      for (var i=0;i<ph.length-1;i++)
+      for (var i = 0; i < ph.length - 1; i++)
       {
          if (ph[i].offsetTop!=ph[i+1].offsetTop) {ln[i].style.display="none"; continue;}//на разных строках
          ln[i].style.top = (ph[i].offsetTop+(ph[i].offsetHeight-this.LINE_HEIGHT)/2)+"px";//отступ сверху
@@ -403,8 +406,8 @@ var phrase = {
 
 var wordSection = {
    _curTable:null,
-   _curWordType:null,
-   _curSection:null,
+   _curWordType:null, //текущая верхняя вкладка
+   _curSection:null, //текущая левая вкладка
    _censor:true,
    
    get _curTableId() {
@@ -414,12 +417,7 @@ var wordSection = {
       if (stype=="popular") res="popular";
       else {
          res="alpha-";
-         switch (wtype) {
-            case "nouns": {res+="nouns"; break;}
-            case "adjectives": {res+="adjectives"; break;}
-            case "verbs": {res+="verbs"; break;}
-            case "other": {res+="other"; break;}            
-         }
+         res += wtype;
       }
       if (this._censor) res = "c"+res;
       return res;
@@ -447,8 +445,14 @@ var wordSection = {
       var type = el.getAttribute("data-type");
       
       var table = d.getElementById("word-type");
-      if (type=="popular") {table.style.transitionDuration="0s"; table.style.opacity = "0";}//убрали раздел части речи
-      else {table.style.transitionDuration=".7s"; table.style.opacity = "1";} //иначе показали
+      if (type=="popular") {
+			table.style.transitionDuration="0s"; 
+			table.style.opacity = "0";
+		}//убрали раздел части речи
+      else {
+			table.style.transitionDuration=".7s"; 
+			table.style.opacity = "1";
+		} //иначе показали
 
       self._curSection.className="";//деактивировали старый раздел
       self._curSection = el;//изменили текущий

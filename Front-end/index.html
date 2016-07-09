@@ -2,11 +2,10 @@
 <html>
    <head>
       <meta charset="utf-8"/>
-      <title>MakethemTalk</title>
+      <title>MakeThemTalk</title>
       <link type="text/css" rel="stylesheet" href="style.css">
       <script type="text/javascript" src="http://vk.com/js/api/share.js?93" charset="windows-1251">/*Скрипт вк*/</script>
       <script type="text/javascript" src="script.js"></script>
-      
    </head>
    
    <body>
@@ -18,10 +17,11 @@
             <div id="left">
                <div class="content-block video">
                   <div id="video_list">
-                     <video>            
-                        <source src="sharishaxd.mp4">
-                        <source src="sharishaxd.avi">
-                     </video>
+                     <video>          
+                        <source>
+                        <source>
+                        <source>
+                     </video> <!-- основное видео, играющее на фоне-->  
                      <video style="display:none;">
                         <source>
                         <source>
@@ -125,7 +125,7 @@
                      <img id="clear_last" src="img/clear.png" title="Стереть последнее">
                      <img id="clear_all" src="img/clear_all.png" title="Стереть все">
                   </div>   
-               </div>
+					</div>
                <hr class="separator" noshade size=1>
                <div class="content-block share">
                   <script type="text/javascript">
@@ -162,7 +162,10 @@
                         <li data-type="popular" class="active">Популярные</li>
                         <li data-type="alpha">По алфавиту</li>
                      </ul>
-                     <label><input type="checkbox" checked=true onchange="wordSection.changeCensor();"> <span>Цензура</span></label>
+                     <label>
+                     	<input type="checkbox" checked=true onchange="wordSection.changeCensor();"> 
+                     	<span>Цензура</span>
+                     </label>
                   </div>
                   <div style="clear:both;"></div>
                   <div class="word-type">
