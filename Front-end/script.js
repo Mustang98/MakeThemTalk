@@ -505,7 +505,7 @@ function showPhrases() {
    {
       newph = d.createElement('LI');
       a = d.createElement('A');
-      a.setAttribute('href','/index.html?'+phrases[i].code);
+      a.setAttribute('href','/karina?'+phrases[i].code);
       a.textContent = parsePhrase(phrases[i].code);
       img = d.createElement('IMG');
       img.setAttribute('src', 'img/play_phrase.png');    
