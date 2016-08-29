@@ -19,14 +19,15 @@ hr.separator{
 
 /*ЗАГОЛОВОК*/
 #header {
-   height:110px;
-   background-color: rgba(255, 180, 176, 1);
+	position: relative;
+	height:110px;
+   background-color: rgba(255, 178, 185, 0.92);
 }
 
-#header>span {
-   display:inline-block;
-   margin:30px auto auto 15px;
-   font-size: 40px;
+#header > ins{
+	position: absolute;
+	top:10px;
+	right:7px;
 }
 
 /*СТРАНИЦА*/
@@ -65,7 +66,6 @@ div.video{
 }
 
 div#video_list{
-	cursor:pointer;
    width:608px;
 }
 
@@ -124,7 +124,7 @@ div#lines hr{
 
 div.phrase>p{
    cursor: default;
-   padding:5px 0 5px 110px;;
+   padding:5px 7px 5px 0px;;
    font-style: italic;
    text-align: center;
    font-size: 1.1em;
@@ -132,10 +132,10 @@ div.phrase>p{
 
 div.phrase>p>img{
 	width:137px;
-	float:right;
-	height:25px;
-	margin-right: -24px;
-	margin-left: 5px;
+	position:absolute;
+	right:-19px;
+	top:5px;
+	height:25px;	
 }
 
 #phrase-cover{   
@@ -145,8 +145,8 @@ div.phrase>p>img{
 #phrase-cover>span{
    cursor:default;
    line-height: 26px;
-   color:#555;
-   background-color: #ececec;
+   color:#333;
+   background-color: #e8e8e8;
    padding:0 24px 1px 15px;
    border-radius:10px;
    -moz-border-radius: 10px;
@@ -233,6 +233,10 @@ div.share{
    padding:5px 0px 5px 10px;
 }
 
+div.share>a>img{
+	cursor:pointer;
+}
+
 .share>span{
    display: inline-block;
    vertical-align:top;
@@ -310,31 +314,39 @@ div.controls>ul>li{
 }
 
 div.word-type{
-   position:absolute;
-   left:-200px;
-   top:236px;
-   transform:rotate(-90deg);
-   -webkit-transform:rotate(-90deg) translate(5px,2px);
-   -moz-transform:rotate(-90deg) translate(-3px,-3px);
-   -o-transform:rotate(-90deg) translate(-8px,-8px);
-   -ms-transform:rotate(-90deg) translate(-2px,-3px);
+	/*left: -190px;
+	top: 227px;*/
+	left: -188px;
+	top: 226px;
+	position:absolute;
+	-webkit-transform:rotate(-90deg) translate(-4px, -3px);
+	transform:rotate(-90deg) translate3d(-1px, -2px, 0);
+	zoom: 1.01;
+	-moz-transform:rotate(-90deg);
+   -o-transform:rotate(-90deg); 
+   -ms-transform:rotate(-90deg) translate(-2px, -3px);
 }
 
-div.word-type td{
-   border-radius:4px 4px 0 0;
-   -webkit-border-radius:4px 4px 0 0;
-   -moz-border-radius:4px 4px 0 0;
+div.word-type>ul{
+	list-style-type: none;
+}
+
+div.word-type>ul>li{
+	float:left;	
+	border-radius:4px 4px 0 0;	
+	-moz-border-radius: 4px 4px 0 0;
+   -webkit-border-radius: 4px 4px 0 0;
    padding-bottom:7px !important;
 }
 
-div.controls>ul>li, div.word-type td{
+div.controls>ul>li, div.word-type li{
    display:inline-block;
    padding:0 10px 4px 10px;
    margin-right:-1px;
    border-bottom-width: 0;
 }
 
-div.controls li:hover, div.word-type td:hover{
+div.controls li:hover, div.word-type li:hover{
    cursor:pointer;
 }
 
@@ -343,7 +355,7 @@ div.controls li.active{
    /*для IE*/
 }
 
-div.controls li.active, div.word-type td.active{
+div.controls li.active, div.word-type li.active{
    
    cursor:default;
    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d0d0d0+0,d0d0d0+2,f0f0f0+100 */
@@ -356,8 +368,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d0d0d0', end
 
 .controls label{
    cursor:pointer;
-   display:block;
-   text-align: right;
+   display:inline-block;
+	float:right;
 }
 
 .controls input{
@@ -370,17 +382,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d0d0d0', end
 
 /*таблица*/
 div.words-cover{
-   min-height:487px;
-   padding:3px 0 0 10px;
+   height:472px;
+   padding:3px 0 3px 10px;
    background-color: #f0f0f0;
-   border-radius:0 15px 15px 15px;
-   -webkit-border-radius:0 15px 15px 15px;
-   -moz-border-radius:0 15px 15px 15px;
+   border-radius:0 7px 0 7px;
+   -webkit-border-radius:0 7px 0 7px;
+   -moz-border-radius:0 7px 0 7px;
    box-shadow: 5px 5px 50px 5px #eaeaea;
    -webkit-box-shadow: 5px 5px 50px 5px #eaeaea;
    -moz-box-shadow: 5px 5px 50px 5px #eaeaea;
    border-left:1px solid #AAA;
    border-top:1px solid #AAA;
+   border-bottom:1px solid #AAA;
+   border-right:1px solid #AAA;
+	overflow-y:auto;
+	overflow-x:hidden;
 }
 
 table.words-list{
@@ -389,7 +405,8 @@ table.words-list{
 }
 
 table.words-list td{
-   padding-right:40px;
+   min-width:143px !important;	
+   max-width:143px !important;
 }
 
 table.words-list td span{
@@ -458,9 +475,11 @@ ul#pop-phrases li a{
 
 
 /*-------КОММЕНТАРИИ------*/
-div#comments{
-   height:60px;
-   background-color: blue;
+div#vk_comments{
+	margin: 10px auto 45px auto;
+	border-radius: 5px 5px 0 0;
+	-moz-border-radius: 5px 5px 0 0;
+   -webkit-border-radius: 5px 5px 0 0;
 }
 
 
@@ -476,8 +495,8 @@ div#comments{
 
 #footer img{
    width:500px;
-   margin-left:20px;
-   margin-top:-42px;   
+   margin-left:7px;
+   margin-top:-38px;   
 }
 
 #footer .contact{

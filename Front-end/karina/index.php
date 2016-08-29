@@ -2,20 +2,78 @@
 <html>
    <head>
       <title>Стримерша Карина говорит то, что ты хочешь - MakeThemTalk.ru</title>
-      <meta charset="utf-8">
-      <meta name="Description" content="Конструктор речи, где стримерша Карина говорит все, что ты хочешь. Составь фразу из слов, и говорящая Карина Сычева тут же произнесет ее вслух.">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="Description" content="Конструктор речи, где стримерша Карина говорит все, что ты хочешь. Составь фразу из слов, и говорящая Карина Сычева произнесет ее вслух онлайн.">
       <meta name="Keywords" content="стримерша карина говорит, карина говорит что ты пишешь, говорящая стримерша карина, конструктор речи стримерши карины,  карина сычева говорит, sharishaxd говорит что ты хочешь, заставить карину говорить">
+      <meta property="og:url"         content="http://www.nytimes.com/karina" />
+		<meta property="og:type"        content="website" />
+		<meta property="og:title"       content="Я составил(а) фразу и стримерша Карина произнесла ее! Нажми на ссылку и посмотри." />
+		<meta property="og:description" content="Конструктор речи, где стримерша Карина говорит все, что ты хочешь. Составь фразу из слов, и говорящая Карина произнесет ее вслух онлайн!" />
+		<meta property="og:image"       content="http://makethemtalk.ru/karina/img/share_img.jpg" />
+     
       <link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
 		<link rel="stylesheet" href="style.css">           
-      <link rel="stylesheet" href="toastr/toastr.css">    
-      <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
-      <script type="text/javascript" src="jquery-3.1.0.min.js"></script>
-		<script type="text/javascript" src="toastr/toastr.min.js"></script>
+      <link rel="stylesheet" href="external/toastr/toastr.css">    
+      <link rel="stylesheet" href="external/font-awesome-4.6.3/css/font-awesome.min.css">
+      <link rel="stylesheet" href="external/jquery.mCustomScrollbar.min.css">
+      
+      <script>
+			if (document.createElement('video').canPlayType == undefined) window.location.pathname="/browser-update.html";
+		</script>
+      <script type="text/javascript" src="external/jquery-3.1.0.min.js"></script>
+		<script type="text/javascript" src="external/toastr/toastr.min.js"></script>
       <script type="text/javascript" src="script.js"></script>
-      <!--ВК КОММЕНТЫ-->
-      <script type="text/javascript" src="//vk.com/js/api/openapi.js?124"></script>
-     	<!--ВК ПОДЕЛИТЬСЯ-->
-      <script type="text/javascript" src="http://vk.com/js/api/share.js?93" charset="windows-1251">/*Скрипт вк*/</script>
+		<script src="external/jquery.mCustomScrollbar.concat.min.js"></script>
+      
+      <!--ВК (блок комментов)-->
+      <script type="text/javascript" src="//vk.com/js/api/openapi.js?122"></script>
+      <script type="text/javascript">
+		  	VK.init({
+				apiId: 5554828,
+			 	onlyWidgets: true
+		  	});
+		</script>
+     	
+     	<!--GOOGLE ANALYTICS-->
+      <script>
+		   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		  	ga('create', 'UA-81126687-1', 'auto');
+		  	ga('send', 'pageview');
+
+		</script>
+		
+		<!-- Yandex.Metrika counter -->
+		<script type="text/javascript">
+			 (function (d, w, c) {
+				  (w[c] = w[c] || []).push(function() {
+						try {
+							 w.yaCounter38624775 = new Ya.Metrika({
+								  id:38624775,
+								  clickmap:true,
+								  trackLinks:true,
+								  accurateTrackBounce:true
+							 });
+						} catch(e) { }
+				  });
+
+				  var n = d.getElementsByTagName("script")[0],
+						s = d.createElement("script"),
+						f = function () { n.parentNode.insertBefore(s, n); };
+				  s.type = "text/javascript";
+				  s.async = true;
+				  s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+				  if (w.opera == "[object Opera]") {
+						d.addEventListener("DOMContentLoaded", f, false);
+				  } else { f(); }
+			 })(document, window, "yandex_metrika_callbacks");
+		</script>
+		<noscript><div><img src="https://mc.yandex.ru/watch/38624775" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+		<!-- /Yandex.Metrika counter -->
    </head>
    <body>
       <?php
@@ -23,95 +81,36 @@
 			getDataFromDB();
 		?>
       <!-- Блок для сохранения слов -->
-		<p style="display:none;"><?php printWords(); ?></p>      
-      <div id="page">
+		<p style="display:none;"><?php printWords(); ?></p>    
+    	<div id="page">
          <div id="header">
-            <span>MakeThemTalk</span>
+            <img src="img/header.png">
          </div>
          <div id="content">
             <div id="left">
                <div class="content-block video">
                   <div id="video_list">
-                     <video id="bgvideo" loop autoplay onplay="bgvideo.muted = true;" style="opacity: 0.5;">          
-                        <source src="smile.mp4">
+                     <video poster="img/bgvideoimg.jpg" id="bgvideo" loop preload autoplay style="opacity: 0.5;">          
+                        <source src="video/background.mp4">
+                        <source src="video/background.ogv">
                      </video> <!-- основное видео, играющее на фоне-->  
-                     <video style="display:none;">
-                        <source>
-                        <source>
-                        <source>
-                     </video>
-                     <video style="display:none;">
-                        <source>
-                        <source>
-                        <source>
-                     </video>
-                     <video style="display:none;">
-                        <source>
-                        <source>
-                        <source>
-                     </video>
-                     <video style="display:none;">
-                        <source>
-                        <source>
-                        <source>
-                     </video>
-                     <video style="display:none;">
-                        <source>
-                        <source>
-                        <source>
-                     </video>
-                     <video style="display:none;">
-                        <source>
-                        <source>
-                        <source>
-                     </video>
-                     <video style="display:none;">
-                        <source>
-                        <source>
-                        <source>
-                     </video>
-                     <video style="display:none;">
-                        <source>
-                        <source>
-                        <source>
-                     </video>
-                     <video style="display:none;">
-                        <source>
-                        <source>
-                        <source>
-                     </video>
-                     <video style="display:none;">
-                        <source>
-                        <source>
-                        <source>
-                     </video>
-                     <video style="display:none;">
-                        <source>
-                        <source>
-                        <source>
-                     </video>
-                     <video style="display:none;">
-                        <source>
-                        <source>
-                        <source>
-                     </video>
-                     <video style="display:none;">
-                        <source>
-                        <source>
-                        <source>
-                     </video>
-                     <video style="display:none;">
-                        <source>
-                        <source>
-                        <source>
-                     </video>
-                     <video style="display:none;">
-                        <source>
-                        <source>
-                        <source>
-                     </video>
+                     <video style="display:none;"></video>
+                     <video style="display:none;"></video>
+                     <video style="display:none;"></video>
+                     <video style="display:none;"></video>
+                     <video style="display:none;"></video>
+                     <video style="display:none;"></video>
+                     <video style="display:none;"></video>
+                     <video style="display:none;"></video>
+                     <video style="display:none;"></video>
+                     <video style="display:none;"></video>
+                     <video style="display:none;"></video>
+                     <video style="display:none;"></video>
+                     <video style="display:none;"></video>
+                     <video style="display:none;"></video>
+                     <video style="display:none;"></video>
                   </div>
-                  <img id="video_start" src="img/green_play.png" style="">       
+                  <img id="video_start" src="img/green_play.png">       
                   <i id="video_loading" class="fa fa-spinner fa-inverse fa-pulse fa-5x" style="display:none;"></i>
                </div>
                <div class="content-block phrase">
@@ -142,24 +141,10 @@
 					</div>
                <hr class="separator" noshade size=1>
                <div class="content-block share">
-                  <script type="text/javascript">
-                     <!--
-                     document.write(VK.Share.button({
-                       url: 'http://mydsfdsite.com',
-                       title: 'Хороший сайт',
-                       description: 'Это мой собственный сайт, я его очень долго делал',
-                       image: 'http://mysite.com/mypic.jpg',
-                       noparse: true
-                     },
-                     {
-                        type:"custom",
-                        text:"<img style='border:0;' src='img/vk-logo.png'>"                        
-                     }));
-                     -->
-                  </script>
-                  <img src="img/ok-logo.png">
-                  <img src="img/fb-logo.png">
-                  <img src="img/go-logo.png">
+                  <a onclick="Share.vkontakte();"><img src='img/vk-logo.png'></a>
+                  <a onclick="Share.odnoklassniki();"><img src='img/ok-logo.png'></a>
+                  <a onclick="Share.facebook();"><img src='img/fb-logo.png'></a>
+                  <a onclick="Share.twitter();"><img src='img/tw-logo.png'></a>
                   <input id="link" onclick = "this.select();" value="http://makethemtalk.ru/karina" readonly type="text">
                   <img id="copy_link" src="img/copy_link.png" title="Cкопировать ссылку">
                </div>
@@ -167,29 +152,30 @@
                <div class="content-block description">
                   <h2>О ресурсе</h2>
                   <!--p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo ldectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam. </p-->
-                  <p>MakeThemTalk.ru - конструктор речи, где стримерша Карина, так же известная как Sharishaxd, говорит то, что ты хочешь. Достаточно составить фразу из доступных слов, и говорящая Карина Сычева тут же произнесет ее вслух. Данный ресурс позволит создавать различные фразы и делиться ими с друзьями, а самые интересные и креативные фразы с говорящей Кариной попадут в раздел "популярные". Заставь Карину сказать все, что ты хочешь! Весь используемый видеоматериал взят из официальной группы стримерши Карины <a href="vk.com/shkuragaming">vk.com/shkuragaming</a>. В настоящее время сайт развивается, а база активно расширяется. </p>
+                  <p>MakeThemTalk.ru/karina — конструктор речи, где стримерша Карина, так же известная как Sharishaxd, говорит то, что ты хочешь. Достаточно составить фразу из доступных слов, и говорящая Карина Сычева тут же произнесет ее в онлайн режиме. Большой выбор категорий слов позволяет создавать различные фразы и делиться ими с друзьями, а самые интересные и креативные из них попадают в раздел "популярные". Заставь Карину сказать все, что ты хочешь!</p><p>Используемый видеоматериал взят из официальной группы стримерши Карины <a target="_blank" rel="nofollow"  href="https://vk.com/shkuragaming">vk.com/shkuragaming</a>. В настоящее время сайт развивается, а база активно расширяется. Помоги проекту — поделись ссылкой в социальных сетях.</p>
                </div>
             </div>
             <div id="right">
-               <div class="content-block words">
+               <div class="content-block words" onmousedown="return false;">
                   <div class="controls">
                      <ul>
                         <li data-type="popular" class="active">Популярные</li>
                         <li data-type="alpha">По алфавиту</li>
                      </ul>
                      <label>
-                     	<input type="checkbox" checked=true onchange="wordSection.changeCensor();"> 
+                     	<input id="censor_checkbox" type="checkbox" checked="checked" onchange="wordSection.changeCensor();"> 
                      	<span>Цензура</span>
                      </label>
                   </div>
                   <div style="clear:both;"></div>
                   <div class="word-type">
-                     <table id="word-type" style="opacity:0;">
-                        <tr><td data-type="other">Другое</td>
-                            <td data-type="adjectives">Прилагательные</td>
-                            <td data-type="verbs">Глаголы</td>
-                            <td data-type="nouns" class="active">Существительные</td></tr>
-                     </table>
+                       <ul id="word-type" style="opacity:0;">
+                     	<li data-type="other">Другое</li>
+                     	<li data-type="adverbs">Наречия</li>
+                     	<li data-type="adjectives">Прилагат.</li>
+                     	<li data-type="verbs">Глаголы</li>
+                     	<li data-type="nouns" class="active">Существит.</li>
+                     </ul>
                   </div>
                   <div class="words-cover" onmousedown="return false;">
                      <table class="words-list" id="calpha-nouns" style="display:none">
@@ -205,6 +191,11 @@
                      <table class="words-list" id="calpha-adjectives" style="display:none;">
                         <?php
                            createTable($adjectives, true);
+                        ?>
+                     </table>
+                     <table class="words-list" id="calpha-adverbs" style="display:none;">
+                        <?php
+                           createTable($adverbs, true);
                         ?>
                      </table>
                      <table class="words-list" id="calpha-other" style="display:none;">
@@ -225,6 +216,11 @@
                      <table class="words-list" id="alpha-adjectives" style="display:none;">
                         <?php
                            createTable($adjectives);
+                        ?>
+                     </table>
+                     <table class="words-list" id="alpha-adverbs" style="display:none;">
+                        <?php
+                           createTable($adverbs);
                         ?>
                      </table>
                      <table class="words-list" id="alpha-other" style="display:none;">
@@ -262,10 +258,10 @@
                </div>
             </div>
             <div style="clear:both"></div>
-            <div id="comments"></div>
+            <div id="vk_comments"></div>
          </div>
          <div id="footer">
-            <img src="img/logo_footer1.png">
+            <img src="img/logo_footer.png">
             <span class="contact">Связь с разработчиками:<br>contact@makethemtalk.ru</span>
             <span class="copyright"><span>&copy;</span> 2016</span>
          </div>

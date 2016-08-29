@@ -22,7 +22,13 @@ if (count($idarr) > 15)
 // Попытка установить соединение с MySQL:
 if (!mysql_connect("127.0.0.1:3306", "root", "")) 
 {
-	finish(false, "db_connect_error");
+	//не используется finish() потому что ошибка номер 500 (внутренняя ошибка сервера)
+	$filestream = fopen("stats_log.txt", "a"); //открываем файл логов
+	$record = "".date("c")." ER ".get_ip()." stats.php?".$_SERVER['QUERY_STRING']." db_connect_error\r\n";
+	fwrite($filestream, $record);
+	fclose($filestream);
+	http_response_code(500);
+	exit;
 }
 
 mysql_select_db("karinaDB");
@@ -39,6 +45,7 @@ for ($i = 0; $i < count($idarr); $i++)
 }
 
 /////////////все проверки прошли/////////////////
+if (count($idarr) < 3) goto m1;
 $strid = implode(",", $idarr); //строка с id
 
 /////////////фраза///////////////
@@ -53,8 +60,16 @@ else
 	mysql_query("INSERT INTO phrases (`phrase`) VALUES (\"".$strid."\");"); //иначе добавляем
 }
 
-/////////////отдельные слова//////////////
+m1://///////////отдельные слова//////////////
+$dif_words; //ассоциативный массив id слов: кладем все слова в него, чтоб учитывать каждое слово max 1 раз во фразе
+
 foreach ($idarr as $id)
+{
+	//записываем слова в массив (set)
+	$dif_words[$id] = $id;
+}
+
+foreach ($dif_words as $id)
 {
 	//увеличивам рейтинг каждого слова
 	mysql_query("UPDATE words SET `rate`=`rate`+1 WHERE `id`=".$id.";");
@@ -62,10 +77,27 @@ foreach ($idarr as $id)
 
 finish(true);
 
+function get_ip()
+{
+    if (!empty($_SERVER['HTTP_CLIENT_IP']))
+    {
+        $ip=$_SERVER['HTTP_CLIENT_IP'];
+    }
+    elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
+    {
+        $ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
+    }
+    else
+    {
+        $ip=$_SERVER['REMOTE_ADDR'];
+    }
+    return $ip;
+}
+
 function finish($isOK, $message = "saved")//OK or not
 {
 	$filestream = fopen("stats_log.txt", "a"); //открываем файл логов
-	$record = "".date("c")." ".($isOK ? "OK " : "ER ")."stats.php?".$_SERVER['QUERY_STRING']." ".$message."\r\n";
+	$record = "".date("c")." ".($isOK ? "OK " : "ER ").get_ip()." stats.php?".$_SERVER['QUERY_STRING']." ".$message."\r\n";
 	fwrite($filestream, $record);
 	fclose($filestream);
 	http_response_code($isOK ? 200 : 400);

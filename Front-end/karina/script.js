@@ -21,162 +21,80 @@ toastr.options = {
   "hideMethod": "fadeOut"
 }
 
+var Share = {
+	description : "Конструктор речи, где стримерша Карина говорит все, что ты хочешь. Составь фразу из слов, и говорящая Карина произнесет ее вслух онлайн!",
+	title : "Я составил(а) фразу и стримерша Карина произнесла ее! Нажми на ссылку и посмотри.",
+	titletw : "Я составил(а) фразу и стримерша Карина произнесла ее! Нажми на ссылку и посмотри -",
+	titleok :  "Я составил(а) фразу и Карина произнесла ее! Нажми на ссылку и посмотри.",
+	image : "http://makethemtalk.ru/karina/img/share_img.jpg",
+	vkontakte: function() {
+		url  = 'http://vkontakte.ru/share.php?';
+		url += 'url='          + encodeURIComponent(link.value);
+		url += '&title='       + encodeURIComponent(this.title);
+		url += '&description=' + encodeURIComponent(this.description);
+		url += '&image='       + encodeURIComponent(this.image);
+		url += '&noparse=true';
+		Share.popup(url, 650, 597);
+	},
+	odnoklassniki: function() {
+		url  = 'https://connect.ok.ru/dk?cmd=WidgetSharePreview&st.cmd=WidgetSharePreview&st._aid=ExternalShareWidget_SharePreview';
+		url += '&st.shareUrl=' + encodeURIComponent(link.value);
+		url += '&st.title='	  + encodeURIComponent(this.titleok);
+		url += '&st.description=' + encodeURIComponent(this.description);
+		url += '&st.imageUrl=' + encodeURIComponent(this.image);
+		Share.popup(url, 580, 350);
+	},
+	facebook: function() {
+		url  = 'http://www.facebook.com/sharer.php?';
+		url += 'u=' 			  + encodeURIComponent(link.value);
+		Share.popup(url, 626, 436);
+	},
+	twitter: function() {
+		url  = 'https://twitter.com/intent/tweet?';
+		url += 'text='      + encodeURIComponent(this.titletw);
+		url += '&url='      + encodeURIComponent(link.value);
+		Share.popup(url, 626, 436);
+	},
+	mailru: function(purl, ptitle, pimg, text) {
+		url  = 'http://connect.mail.ru/share?';
+		url += 'url='          + encodeURIComponent(purl);
+		url += '&title='       + encodeURIComponent(ptitle);
+		url += '&description=' + encodeURIComponent(text);
+		url += '&imageurl='    + encodeURIComponent(pimg);
+		Share.popup(url)
+	},
+
+	popup: function(url, width, height) {
+		t = (screen.height - height) / 2;
+      l = (screen.width - width) / 2;
+		window.open(url,'', "top=" + t + ",left=" + l + ",width=" + width + ",height=" + height + ",menubar=0,scrollbars=0,status=0,toolbar=0");
+	}
+};
+
 //LOADED DATA
 var words; //массив слов
-//ИЗМЕНЕНО НА PHP
-/*
-var words = [    
-   {value:"вечерами", rate:5, censor:true},24
-   {value:"внутри", rate:5, censor:true},1
-   {value:"да", rate:5, censor:true},2
-   {value:"доту", rate:5, censor:true},3
-   {value:"играть", rate:5, censor:true},4
-   {value:"киса", rate:5, censor:true},5
-   {value:"книжки", rate:5, censor:true},6
-   {value:"лапки", rate:5, censor:true},7
-   {value:"люблю", rate:5, censor:true},8
-   {value:"мечтать", rate:5, censor:true},9
-   {value:"милая", rate:5, censor:true},10
-   {value:"я", rate:5, censor:true},11
-   {value:"мурмурмур", rate:5, censor:true},12
-   {value:"носик", rate:5, censor:true},13
-   {value:"няша-стесняша", rate:5, censor:true},14
-   {value:"особенно", rate:5, censor:true},15
-   {value:"полный", rate:5, censor:true},16
-   {value:"пушистые", rate:5, censor:true},17
-   {value:"скромная", rate:5, censor:true},18
-   {value:"счастье", rate:5, censor:true},19
-   {value:"такая", rate:5, censor:true},20
-   {value:"такие", rate:5, censor:true},21
-   {value:"читать", rate:5, censor:true},22
-   {value:"я тебя люблю", rate:5, censor:true},23
-   
-   {value:"пизда", rate:5, censor:false},
-   {value:"бояться", rate:12, censor:true},
-   {value:"важный", rate:4, censor:true},
-   {value:"великий", rate:3, censor:true},
-   {value:"вести", rate:6, censor:true},
-   {value:"внимание", rate:7, censor:true},
-   {value:"военный", rate:10, censor:true},
-   {value:"все-таки", rate:11, censor:true},
-   {value:"давно", rate:1, censor:true},
-   {value:"даже", rate:3, censor:true},
-   {value:"действительно", rate:7, censor:true},
-   {value:"живой", rate:8, censor:true},
-   {value:"задача", rate:9, censor:true},
-   {value:"ебать", rate:3, censor:false},
-   {value:"известный", rate:2, censor:true},
-   {value:"блядь", rate:18, censor:false},
-   {value:"информация", rate:14, censor:true},
-   {value:"мера", rate:13, censor:true},
-   {value:"муж", rate:12, censor:true},
-   {value:"наконец", rate:6, censor:true},
-   {value:"нахуй", rate:1, censor:false},
-   {value:"огромный", rate:0, censor:true},
-   {value:"окно", rate:14, censor:true},
-   {value:"ответ", rate:2, censor:true},
-   {value:"показать", rate:9, censor:true},
-   {value:"охуенный", rate:5, censor:false},
-   {value:"положение", rate:11, censor:true},
-   {value:"поставить", rate:14, censor:true},
-   {value:"правило", rate:14, censor:true},
-   {value:"правительство", rate:3, censor:true},
-   {value:"шлюха", rate:11, censor:false},
-   {value:"прийтись", rate:9, censor:true},
-   {value:"программа", rate:7, censor:true},
-   {value:"производство", rate:16, censor:true},
-   {value:"происходить", rate:22, censor:true},
-   {value:"простой", rate:3, censor:true},
-   {value:"пиздец", rate:12, censor:false},
-   {value:"разговор", rate:1, censor:true},
-   {value:"рынок", rate:5, censor:true},
-   {value:"семья", rate:7, censor:true},
-   {value:"сколько", rate:3, censor:true},
-   {value:"смерть", rate:13, censor:true},
-   {value:"совершенно", rate:10, censor:true},
-   {value:"становиться", rate:2, censor:true},
-   {value:"стена", rate:2, censor:true},
-   {value:"существовать", rate:10, censor:true},
-   {value:"сын", rate:14, censor:true},
-   {value:"сука", rate:7, censor:false},
-   {value:"третий", rate:10, censor:true},
-   {value:"труд", rate:5, censor:true},
-   {value:"федерация", rate:3, censor:true},
-   {value:"хотеться", rate:1, censor:true},
-   {value:"центр", rate:2, censor:true}
-];
-
-var words = [    
-   {value:"пизда", 		rate:5, censor:false},
-   {value:"бояться", 	rate:12, censor:true},
-   {value:"важный",		rate:4, censor:true},
-   {value:"великий", 	rate:3, censor:true},
-   {value:"вести", 		rate:6, censor:true},
-   {value:"внимание", 	rate:7, censor:true},
-   {value:"военный",	   rate:10, censor:true},
-   {value:"все-таки",	rate:11, censor:true},
-   {value:"давно", 		rate:1, censor:true},
-   {value:"даже", 		rate:3, censor:true},
-   {value:"действительно", rate:7, censor:true},
-   {value:"живой", 		rate:8, censor:true},
-   {value:"задача", 		rate:9, censor:true},
-   {value:"ебать", 		rate:3, censor:false},
-   {value:"известный", 	rate:2, censor:true},
-   {value:"блядь", 		rate:18, censor:false},
-   {value:"информация", rate:14, censor:true},
-   {value:"мера", 		rate:13, censor:true},
-   {value:"муж",			rate:12, censor:true},
-   {value:"наконец", 	rate:6, censor:true},
-   {value:"нахуй", 		rate:1, censor:false},
-   {value:"огромный", 	rate:0, censor:true},
-   {value:"окно", 		rate:14, censor:true},
-   {value:"ответ",		rate:2, censor:true},
-   {value:"показать", 	rate:9, censor:true},
-   {value:"охуенный", 	rate:5, censor:false},
-   {value:"положение", 	rate:11, censor:true},
-   {value:"поставить", 	rate:14, censor:true},
-   {value:"правило", 	rate:14, censor:true},
-   {value:"правительство", rate:3, censor:true},
-   {value:"шлюха", 		rate:11, censor:false},
-   {value:"прийтись", 	rate:9, censor:true},
-   {value:"программа", 	rate:7, censor:true},
-   {value:"производство", rate:16, censor:true},
-   {value:"происходить", rate:22, censor:true},
-   {value:"простой", rate:3, censor:true},
-   {value:"пиздец", rate:12, censor:false},
-   {value:"разговор", rate:1, censor:true},
-   {value:"рынок", rate:5, censor:true},
-   {value:"семья", rate:7, censor:true},
-   {value:"сколько", rate:3, censor:true},
-   {value:"смерть", rate:13, censor:true},
-   {value:"совершенно", rate:10, censor:true},
-   {value:"становиться", rate:2, censor:true},
-   {value:"стена", rate:2, censor:true},
-   {value:"существовать", rate:10, censor:true},
-   {value:"сын", rate:14, censor:true},
-   {value:"сука", rate:7, censor:false},
-   {value:"третий", rate:10, censor:true},
-   {value:"труд", rate:5, censor:true},
-   {value:"федерация",	 rate:3, censor:true},
-   {value:"хотеться",		 rate:1, censor:true},
-   {value:"центр",		 rate:2, censor:true}
-];
-*/
 
 //CLIENT DATA OBJECTS
 var video = {
-   _phrasevid:[],
+   _phrasevid:[], //ссылки на элементы видео текущей фразы 
    _freevid:[], //стэк свободных видеоэлементов
    _mainvid:null, //фоновое основное видео (ссылка на элемент)
    _curvideonum: null, //номер текущего видео в массиве _phrasevid[]
 	_timerId:null, //id таймера во время загрузки видео
+	_format:null, //формат видео, который может воспроизводить данный браузер
 	isplayed:false,
 	isloading:false,
    
    initialize: function() {
       var vid = d.getElementById("video_list").children;
       this._mainvid = vid[0];
-      for (var i=1;i<vid.length;i++) this._freevid.push(vid[i]);
+      for (var i = 1; i < vid.length; i++) this._freevid.push(vid[i]);
+		
+		if (this._mainvid.canPlayType("video/mp4") == "maybe") 
+			this._format = ".mp4";
+		else if (this._mainvid.canPlayType("video/ogg") == "maybe")
+			this._format = ".ogv";
+		else window.location.pathname="/browser-update.html";
    },
    
    add: function(id) {//id добавляемого слова
@@ -185,14 +103,15 @@ var video = {
       this._phrasevid.push(newv);//добавляем в текущий "плейлист"
       newv.loaded = false;//флажок готовности к проигрыванию
       //setTimeout(function(){newv.loaded=true;}, 5000); //для тестирования загрузки
-		newv.oncanplaythrough = function() {this.loaded = true;} //в функции this = видео объект
-      newv.children[0].src = 'video/v'+id+'.mp4';      
-      newv.children[1].src = 'video/v'+id+'.ogg';      
-      newv.children[2].src = 'video/v'+id+'.webm';
+		newv.addEventListener("canplaythrough"/*"canplay"*/, function() {this.loaded = true;}); //в функции this = видео объект
+      var srcElement = d.createElement("SOURCE");		
+		srcElement.src = 'video/v' + id + this._format; 
+		newv.appendChild(srcElement);
       newv.load();
    },
    
    delete: function(numb_in_phrase) {
+		this._phrasevid[numb_in_phrase].removeChild(this._phrasevid[numb_in_phrase].children[0]); //удаляем source
       this._freevid.push(this._phrasevid[numb_in_phrase]);//добавляем текущий тег видео в свободные
       this._phrasevid.splice(numb_in_phrase,1);//удаляем из текущего "плейлиста"
    },
@@ -210,17 +129,17 @@ var video = {
          if (self.isloading == false) 
 			{
 				self.isloading = true;
-				d.getElementById("video_start").style.opacity="0";//скрываем кнопку play
-				d.getElementById("video_loading").style.display="";//показываем иконку загрузки
-				d.getElementById("video_list").style.cursor="pointer";//курсор для обертки вокруг видео, т.к. при нажатии - пауза
+				d.getElementById("video_start").style.opacity = "0";//скрываем кнопку play
+				d.getElementById("video_loading").style.display = "";//показываем иконку загрузки
+				d.getElementById("video_list").style.cursor = "pointer";//курсор для обертки вокруг видео, т.к. при нажатии - пауза
 			}
 			self._timerId = setTimeout("video.start();", 400);
          return;
       }
 		
-		d.getElementById("video_loading").style.display="none"; //скрываем иконку загрузки
-      d.getElementById("video_start").style.opacity="0";//скрываем кнопку play
-		d.getElementById("video_list").style.cursor="pointer";//курсор для обертки вокруг видео, т.к. при нажатии - пауза
+		d.getElementById("video_loading").style.display = "none"; //скрываем иконку загрузки
+      d.getElementById("video_start").style.opacity = "0";//скрываем кнопку play
+		d.getElementById("video_list").style.cursor = "pointer";//курсор для обертки вокруг видео, т.к. при нажатии - пауза
       
 		sendPhrase(phrase._curIds.join(",")); //отправляем на сервер информацию о запущенной фразе
       self.isloading = false;
@@ -230,15 +149,16 @@ var video = {
    },
    
    playWord: function(num) {//получаем номер в текущей фразе
-      if (num == this._phrasevid.length) //проиграли всю фразу
+		if (num == this._phrasevid.length) //проиграли всю фразу
       {
          this._phrasevid[num - 1].style.display = "none";//скрываем предыдущее видео          
          phrase.colorize(num-1, "viewed");//затемняем предыдущее слово
          this.finish();
          return;
       }
-      this._phrasevid[num].onended = function() {video.playWord(num+1)};//проигрывание следующего по завершению
-      if (num == 0) this._mainvid.style.display = "none";//скрываем главное видео (играем 1е слово фразы)
+		this._phrasevid[num].addEventListener("ended", video._nextCall);//проигрывание следующего по завершению
+      
+		if (num == 0) this._mainvid.style.display = "none";//скрываем главное видео (играем 1е слово фразы)
       else 
       {
          this._phrasevid[num - 1].style.display = "none";//скрываем предыдущее видео
@@ -252,15 +172,16 @@ var video = {
 	},
    
    finish: function() {
-      this._mainvid.style.display="";
+      this._mainvid.style.display = "";
 		this._mainvid.play();//запускаем фоновое видео
-      d.getElementById("video_start").style.opacity="1";//показываем кнопку
-		d.getElementById("video_list").style.cursor="default";
+      d.getElementById("video_start").style.opacity = "1";//показываем кнопку
+		d.getElementById("video_list").style.cursor = "default";
       phrase.decolorize();
       this.isplayed = false;
 		this._curvideonum = null;
 		for (var i = 0; i < this._phrasevid.length; i++)
 		{
+			this._phrasevid[i].removeEventListener("ended", this._nextCall); //убираем обработчик окночания проигрывания
 			this._phrasevid[i].currentTime = 0; //перематываем в начало, иначе при повторном запуске показывается конечный кадр
 			this._phrasevid[i].pause();				
 		}
@@ -285,10 +206,14 @@ var video = {
 	},
 	
    canPlay: function() {
-      for (var i=0; i<this._phrasevid.length; i++) 
+      for (var i = 0; i < this._phrasevid.length; i++) 
          if (this._phrasevid[i].loaded == false) return false;
       return true;
-   }
+   },
+	
+	_nextCall: function() {
+		video.playWord(video._curvideonum + 1);
+	}
 }
 
 var phrase = {
@@ -325,11 +250,11 @@ var phrase = {
       newImg.setAttribute('title','Нажмите для удаления');
       newWord.appendChild(newImg);	*/	
 		
-      if (this._curPhrase.length==0) this.showControls();//показать элементы управления
+      if (this._curPhrase.length == 0) this.showControls();//показать элементы управления
       this._curPhrase.push(newWord);//добавляем в фразу
       this._curIds.push(id);
       this._block.appendChild(newWord);//добавляем на страницу
-      this._block.appendChild(d.createTextNode(' '));//добавлили пробел
+      this._block.appendChild(d.createTextNode(' '));//добавили пробел
       this._last = newWord;
       
       //внешнее
@@ -342,7 +267,7 @@ var phrase = {
    {
       var self = phrase; 
       var el = event.target;
-      if (el.parentElement.tagName!='SPAN') return;
+      if (el.parentElement.tagName != 'SPAN') return;
       if (video.isplayed) 
       {
          notification("error", "Данная операция недоступна во время воспроизведения.", "Дождитесь окончания видео");
@@ -437,7 +362,7 @@ var phrase = {
       var ln = this._lines;
       for (var i = 0; i < ph.length - 1; i++)
       {
-         if (ph[i].offsetTop!=ph[i+1].offsetTop) {ln[i].style.display="none"; continue;}//на разных строках
+         if (ph[i].offsetTop != ph[i+1].offsetTop) {ln[i].style.display="none"; continue;}//на разных строках
          ln[i].style.top = (ph[i].offsetTop+(ph[i].offsetHeight-this.LINE_HEIGHT)/2)+"px";//отступ сверху
          ln[i].style.left = (ph[i].offsetLeft + ph[i].offsetWidth/2)+"px";//отступ слева
          ln[i].style.width = (ph[i+1].offsetLeft - ph[i].offsetLeft-ph[i].offsetWidth/2+ph[i+1].offsetWidth/2)+"px";//ширина
@@ -455,10 +380,10 @@ var phrase = {
    
    decolorize: function()
    {
-      for (var i=0; i<this._curPhrase.length;i++)
-         this._curPhrase[i].className="";
-      for (var i=0; i<this._lines.length; i++)
-         this._lines[i].style.backgroundColor="#ececec";
+      for (var i = 0; i < this._curPhrase.length; i++)
+         this._curPhrase[i].className = "";
+      for (var i = 0; i < this._lines.length; i++)
+         this._lines[i].style.backgroundColor = "#e8e8e8";
       
    }
 };
@@ -473,9 +398,10 @@ var wordSection = {
       var stype = this._curSection.getAttribute("data-type");
       var wtype = this._curWordType.getAttribute("data-type");
       var res="";
-      if (stype=="popular") res="popular";
-      else {
-         res="alpha-";
+      if (stype == "popular") res = "popular";
+      else 
+		{
+         res = "alpha-";
          res += wtype;
       }
       if (this._censor) res = "c"+res;
@@ -483,28 +409,34 @@ var wordSection = {
    },
    
    initialize: function() {
+		$(".words-cover").mCustomScrollbar({
+			theme : "dark-3",
+			scrollInertia : 0,
+			autoExpandScrollbar: false,
+			alwaysShowScrollbar : 1
+		});
       this._curTable = d.getElementById("cpopular");
       this._curSection = d.querySelector('li[data-type="popular"]');
-      this._curWordType = d.querySelector('td[data-type="nouns"]');
+      this._curWordType = d.querySelector('li[data-type="nouns"]');
    },
    
    changeCensor: function() {
       var self = wordSection;//т.к. this занят
-      self._censor = !self._censor;
+      self._censor = !self._censor;		
       self._curTable.style.display="none";//скрываем текущую таблицу
       self._curTable = d.getElementById(self._curTableId); //получаем новую
       self._curTable.style.display = "";//открываем новую
-   },
+	},
    
    changeSection: function(event) {
       var self = wordSection;//т.к. this занят
       var el = event.target;
-      if (el.tagName!='LI' || el == self._curSection) return;//кликнули на открытый элемент или мимо элемента
+      if (el.tagName != 'LI' || el == self._curSection) return;//кликнули на открытый элемент или мимо элемента
       
       var type = el.getAttribute("data-type");
       
-      var table = d.getElementById("word-type");
-      if (type=="popular") {
+      var table = d.getElementById("word-type"); //таблица выбора типа (вертикальная)
+      if (type == "popular") {
 			table.style.transitionDuration="0s"; 
 			table.style.opacity = "0";
 		}//убрали раздел части речи
@@ -519,22 +451,23 @@ var wordSection = {
 
       self._curTable.style.display = "none";//скрываем старую таблицу
       self._curTable = d.getElementById(self._curTableId);//получаем новую
-      self._curTable.style.display="";//показываем новую      
+      self._curTable.style.display="";//показываем новую      		
    },
    
    changeWordType: function(event) {
       var self = wordSection;//т.к. this занят
       var el = event.target;
-      if (el.tagName!='TD' || el == self._curSection) return;//кликнули на открытый элемент или мимо элемента
+      if (el.tagName != 'LI' || el == self._curWordType) return;//кликнули на открытый элемент или мимо элемента
       
       self._curWordType.className="";//деактивировали старый раздел
       self._curWordType = el;//изменили текущий
       self._curWordType.className="active";//активировали его
 
       self._curTable.style.display = "none";//скрываем старую таблицу
-      self._curTable = d.getElementById(self._curTableId);//получаем новую
-      self._curTable.style.display="";//показываем новую      
-   }   
+		self._curTable = d.getElementById(self._curTableId);//получаем новую
+      self._curTable.style.display="";//показываем новую     		
+		$(".words-cover").mCustomScrollbar("scrollTo", "top", {scrollEasing: "linear", scrollInertia:0}); //сбрасываем скроллбар вверх
+	}   
 }
 
 
@@ -544,14 +477,16 @@ function DOMloaded()
    words = d.body.firstElementChild.textContent.split('&'); //получаем список слов
 	d.body.removeChild(d.body.firstElementChild); //удаляем узел, где были слова
 	
-	
+	d.getElementById("censor_checkbox").checked = true;
 	checkPhrases(); //проверка популярных фраз на неоходимость добавления переноса
    wordSection.initialize(); //инициализация обработчика навигации по секциям слов
    phrase.initialize(); //инициализация объекта текущей фразы
    video.initialize();//инициализация объекта плэйлиста видео
-   checkLocation(); //проверка наличия фразы в ссылке
+   updateLink(); //в Firefox баг - в inpute остается старое значение после перезагрузки, поэтому убираем принудительно
+	checkLocation(); //проверка наличия фразы в ссылке
    
    //EVENTS
+   d.getElementById("bgvideo").addEventListener("durationchange", setRandomTime);//установка рандомного начала видео
    d.getElementById("pop-phrases").onmouseover = popPhrasesMouseOver;//наведение на поп. фразу
    d.getElementById("pop-phrases").onmouseout = popPhrasesMouseOut;//отведение от поп. фразы
    d.querySelector("div.controls").onclick = wordSection.changeSection;//нажатие на изменение категории слов
@@ -563,10 +498,13 @@ function DOMloaded()
 	d.getElementById("video_loading").onclick = video.stop;//нажатие на видео => если играет, то стоп.
 	d.getElementById("video_list").onclick = video.stop;//нажатие на видео => если играет, то стоп.
 	d.getElementById("copy_link").onclick = copyLink;//нажатие на кнопку копирования ссылки	
-   d.getElementById("video_start").onclick = function() { 
-		if (video.isplayed || video.isloading) video.stop();
-		else video.start();
-	} //нажатие на кнопку воспроизведения	
+   d.getElementById("video_start").onclick = video_startClick; //нажатие на кнопку воспроизведения	
+	
+	VK.Widgets.Comments('vk_comments', {
+		width: 1130,
+		limit: 10,
+		autoPublish: 1
+	}, "1");
 }
 
 //LOADED CONTENT PROCESSING
@@ -586,22 +524,22 @@ function checkPhrases() {
 }
 
 function checkLocation() {
-   var str = window.location.search;
+   var str = decodeURIComponent(window.location.search);
 	
 	//в запросе нет фразы
 	if (str=='' || str=='?') return;
 	
 	str = str.slice(1); //убираем знак "?"
 	
-	//проверяем чтоб каждый символ был цифрой или амперсандом
+	//проверяем чтоб каждый символ был цифрой или точкой
 	for (var i = 0; i < str.length; i++)
 	{
-		if (str[i] != '&' &&  (str[i] < "0" || str[i] > "9")) 
+		if (str[i] != '.' &&  (str[i] < "0" || str[i] > "9")) 
 			return;
 	}
 	
 	//массив чисел (id)
-	str = str.split("&");
+	str = str.split(".");
 	
 	//фраза из больше, чем 15 слов
 	if (str.length > 15) 
@@ -620,6 +558,11 @@ function checkLocation() {
 }
 
 //EVENTS
+function setRandomTime(event) {
+	this.currentTime = this.duration * Math.random();
+	this.muted = true;
+}
+
 function popPhrasesMouseOver(event) {
    var elem = event.target;
    if (elem.tagName != 'A') return;
@@ -641,6 +584,11 @@ function wordClick(event) {
 	return false;
 }
 
+function video_startClick(event) {
+	if (video.isplayed || video.isloading) video.stop();
+	else video.start();
+}
+
 //ELSE INERMEDIATE FUNCTIONS
 function sendPhrase(ids) {
 	var xhr = new XMLHttpRequest();
@@ -659,7 +607,7 @@ function notification(type, message, title){
 
 function updateLink() {
    var s='';
-   if (phrase._curIds.length>0) s='?'+phrase._curIds.join('&');
+   if (phrase._curIds.length>0) s='?'+phrase._curIds.join('.');
    d.getElementById("link").value = "http://makethemtalk.ru/karina"+s;
 }
 

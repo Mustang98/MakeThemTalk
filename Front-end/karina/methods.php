@@ -10,6 +10,7 @@ $iscensor[0] = null; //массив флажков, цензурное ли сл
 $nouns;
 $adjectives;
 $verbs;
+$adverbs;
 $other;
 $popular;
 $cpopular;
@@ -18,7 +19,7 @@ $phrases;
 //загрузка данных из БД
 function getDataFromDB() 
 {
-	global $word_number, $words, $iscensor, $nouns, $adjectives, $verbs, $other, $popular, $cpopular, $phrases;
+	global $word_number, $words, $iscensor, $nouns, $adjectives, $verbs, $adverbs, $other, $popular, $cpopular, $phrases;
 
 	// Попытка установить соединение с MySQL:
 	if (!mysql_connect("127.0.0.1:3306", "root", "")) 
@@ -44,6 +45,7 @@ function getDataFromDB()
 			case 'n': $nouns[] = $word["id"]; break;
 			case 'a': $adjectives[] = $word["id"]; break;
 			case 'v': $verbs[] = $word["id"]; break;
+			case 'd': $adverbs[] = $word["id"]; break; //наречия			
 			case 'o': $other[] = $word["id"]; break;
 		}
 	}
@@ -51,14 +53,14 @@ function getDataFromDB()
 	
 	//---------------------------------------------------------------------
 	//----------------Получаем слова по популярности-----------------------
-	$query = mysql_query("SELECT `id` FROM words ORDER BY `rate` DESC LIMIT 25;"); //получаем id 25 самых популярных слов
+	$query = mysql_query("SELECT `id` FROM words ORDER BY `rate` DESC LIMIT 45;"); //получаем id 25 самых популярных слов
 	$record;
 	while ($record = mysql_fetch_assoc($query)) //сохраняем в массив
 	{
 		$popular[] = $record["id"];
 	}
 	
-	$query = mysql_query("SELECT `id` FROM words WHERE `censor`=1 ORDER BY `rate` DESC LIMIT 25;"); //получаем id 25 самых популярных цензурных слов
+	$query = mysql_query("SELECT `id` FROM words WHERE `censor`=1 ORDER BY `rate` DESC LIMIT 45;"); //получаем id 25 самых популярных цензурных слов
 	while ($record = mysql_fetch_assoc($query)) //сохраняем в массив
 	{
 		$cpopular[] = $record["id"];
@@ -80,12 +82,23 @@ function getDataFromDB()
 function createTable(&$arrind, $censor = false) //массив индексов, цензурно или нет  
 {
 	global $words, $iscensor, $TABLE_RAWS, $TABLE_COLS;
-	$table; //двумерный массив id слов
+	$table; $raws_num; real_len;//двумерный массив id слов, количество строк, кол-во подходящих слов
 	$length = count($arrind); //количество слов
+	if ($censor == false)  $real_len = $length; 
+	else 
+	{
+		//если цензура, считаем количество цензурных в цикле
+		foreach ($arrind as $ind)
+			if ($iscensor[$ind]) $real_len++;
+	}
+	//распределяем поровну между столбцами
+	if ($real_len % $TABLE_COLS == 0) $raws_num = $real_len / 3;
+	else $raws_num = $real_len / 3;
+	
 	$t = 0; //текущее рассматриваемое слово
 
 	for ($j = 0; $j < $TABLE_COLS; $j++) //заполняем таблицу по столбцам
-		for ($i = 0; $i < $TABLE_RAWS; $i++)
+		for ($i = 0; $i < $raws_num; $i++)
 		{
 			if ($t >= $length) break; //если положили все слова - выходим
 			if ($censor && $iscensor[$arrind[$t]] == false) 
@@ -100,7 +113,7 @@ function createTable(&$arrind, $censor = false) //массив индексов,
 
 	//выводим таблицу
 	echo "<tbody>\n";
-	for ($i = 0; $i < $TABLE_RAWS; $i++) //заполняем таблицу по столбцам
+	for ($i = 0; $i < $raws_num; $i++) //заполняем таблицу по столбцам
 	{
 		echo "<tr>";
 		for ($j = 0; $j < $TABLE_COLS; $j++)
@@ -124,7 +137,7 @@ function showPhrases()
 	foreach ($phrases as $phrase)
    {
       echo "<li>\n";
-      echo "<a href=\"/karina?".str_replace(",","&",$phrase)."\" >".parsePhrase($phrase)."</a>\n";
+		echo "<a href=\"/karina?".str_replace(",",".",$phrase)."\" >".parsePhrase($phrase)."</a>\n";
       echo "<img src=\"img/play_phrase.png\">";    
    	echo "</li>\n";
 	}
